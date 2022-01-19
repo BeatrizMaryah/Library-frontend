@@ -1,1 +1,11 @@
-<p>form works!</p>
+<form [formGroup]="formLibrary">
+  <div *ngFor="let value of keys">
+    <label [for]="value">{{  valueUpper(value) }}:</label>
+    <br />
+    <input type="text" [formControlName]="value" [id]="value" />
+    <br />
+  </div>
+
+  <button type="button" (click)="clickOnSubmit()">Submit</button>
+  <button type="button" id="cancel" (click)="goBack()">Cancel</button>
+</form>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://library-springboot-apirest.herokuapp.com/'
+  baseUrl: 'https://library-springboot-apirest.herokuapp.com'
 };
 
 /*

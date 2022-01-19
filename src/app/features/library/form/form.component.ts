@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Library } from 'src/app/core/model/library';
+import { LibrariesService } from 'src/app/core/services/libraries/libraries.service';
 
 @Component({
   selector: 'app-form',
@@ -21,7 +23,8 @@ export class FormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private librariesService: LibrariesService,
     ) {}
 
   ngOnInit(): void {
@@ -38,15 +41,16 @@ export class FormComponent implements OnInit {
   }
 
   clickOnSubmit(){
-    // if (this.formLibrary.valid) {
-    //   const library: Library = this.formLibrary.value;
-    //   this.libraryService.upsert(library).subscribe((value) => {
-    //     this.libraryService.setPerson(value);
-    //     this.formLibrary.reset();
+    if (this.formLibrary.valid) {
+      const library: Library = this.formLibrary.value;
+      this.librariesService.upsert(library).subscribe((value) => {
+        this.librariesService.setLibrary(value);
+        this.formLibrary.reset();
 
-    //       this.router.navigate(['..'], { relativeTo: this.activatedRoute });
-    //   });
-    // }
+        this.router.navigate(['books']);
+          // this.router.navigate(['..'], { relativeTo: this.activatedRoute });
+      });
+    }
   }
 
   goBack(): void {

@@ -9,18 +9,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FeaturesModule } from './features/features.module';
 import { CoreModule } from './core/core.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MaterialModule } from './material.module';
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
+    FormsModule,
+    MatNativeDateModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
     FeaturesModule,
     CoreModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

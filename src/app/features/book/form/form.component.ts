@@ -31,8 +31,10 @@ export class FormComponent implements OnInit {
     this.formBook = this.formBuilder.group({
       id: '',
       name: '',
+      description: '',
       author: '',
       cost: '',
+      idLibrary: '',
     });
 
     this.keys = Object.keys(this.formBook.value).filter(

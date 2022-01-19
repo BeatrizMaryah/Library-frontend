@@ -4,6 +4,7 @@ import { BookRoutingModule } from './book-routing.module';
 import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [FormComponent, ListComponent],
@@ -11,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BookRoutingModule,
     ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class BookModule { }

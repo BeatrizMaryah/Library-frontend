@@ -1,1 +1,14 @@
-<p>list works!</p>
+<div *ngFor="let book of books">
+<mat-card class="card">
+  <mat-card-title-group>
+    <mat-card-title>{{ book.name }}</mat-card-title>
+    <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+    <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  </mat-card-title-group>
+  <mat-card-content>{{ book.description }}</mat-card-content>
+  <mat-card-actions>
+    <button mat-button >Edit</button>
+    <button mat-button color="warn">Delete</button>
+  </mat-card-actions>
+</mat-card>
+</div>

@@ -17,6 +17,8 @@ export class FormComponent implements OnInit {
   @Output()
   submit = new EventEmitter();
 
+  formTypeLabel: string;
+
   formBook: FormGroup;
   keys: string[];
 
@@ -46,6 +48,10 @@ export class FormComponent implements OnInit {
         this.formBook.patchValue(value.entity);
       }
     });
+
+    const hasId = Boolean(this.activatedRoute.snapshot.params.id);
+
+    this.formTypeLabel = hasId ? 'Atualizar' : 'Cadastrar';
   }
 
   clickOnSubmit(){

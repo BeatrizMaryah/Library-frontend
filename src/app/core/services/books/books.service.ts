@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book } from '../../model/book';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -46,4 +45,6 @@ export class BooksService {
   setBook(book: Book){
     this._book.next(book);
   }
+
+  
 }

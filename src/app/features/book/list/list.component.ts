@@ -39,8 +39,8 @@ export class ListComponent implements OnInit {
     })
   }
 
-  seeBook(){
-
+  goToAdd(){
+    this.router.navigate(['add'], { relativeTo: this.activatedRoute });
   }
 
   private setBooks(books) {

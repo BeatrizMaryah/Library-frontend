@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { BookRoutingModule } from './book-routing.module';
+import { FormComponent } from './form/form.component';
+import { ListComponent } from './list/list.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [FormComponent, ListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    BookRoutingModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
   ]
 })
 export class BookModule { }

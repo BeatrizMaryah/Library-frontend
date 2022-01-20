@@ -1,14 +1,33 @@
+<shared-toolbar></shared-toolbar>
+
 <div *ngFor="let book of books">
-<mat-card class="card">
+  <mat-card class="card">
   <mat-card-title-group>
     <mat-card-title>{{ book.name }}</mat-card-title>
     <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
     <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
   </mat-card-title-group>
   <mat-card-content>{{ book.description }}</mat-card-content>
-  <mat-card-actions>
-    <button mat-button >Edit</button>
-    <button mat-button color="warn">Delete</button>
+  <mat-card-actions  align="end">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="seeBook()">
+        <mat-icon>visibility</mat-icon>
+        <span>See</span>
+      </button>
+      <button mat-menu-item (click)="editBook(book.id)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item (click)="deleteBook(book.id)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
   </mat-card-actions>
 </mat-card>
 </div>
+
+

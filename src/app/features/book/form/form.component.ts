@@ -40,6 +40,12 @@ export class FormComponent implements OnInit {
     this.keys = Object.keys(this.formBook.value).filter(
       (key) => key !== 'id'
     );
+
+    this.activatedRoute.data.subscribe((value) => {
+      if (value.entity) {
+        this.formBook.patchValue(value.entity);
+      }
+    });
   }
 
   clickOnSubmit(){
@@ -61,4 +67,5 @@ export class FormComponent implements OnInit {
   valueUpper = (value) => {
     return value.charAt(0).toUpperCase() + value.slice(1, value.length);
   };
+
 }

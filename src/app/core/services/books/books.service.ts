@@ -29,7 +29,7 @@ export class BooksService {
     book.isBorrowed = Boolean(book.isBorrowed);
 
     if(book.id){
-      return this.http.patch<Book>(`${this.baseUrl}/${book.id}`, book);
+      return this.http.put<Book>(`${this.baseUrl}/${book.id}`, book);
     } else {
       return this.http.post<Book>(this.baseUrl, book);
     }

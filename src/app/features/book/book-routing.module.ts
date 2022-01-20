@@ -37,6 +37,13 @@ const routes: Routes = [
     path: 'add',
     component: FormComponent,
   },
+  {
+    path: ':id',
+    component: FormComponent,
+    resolve: {
+      entity: BookDataResolver,
+    },
+  },
 ];
 
 @NgModule({

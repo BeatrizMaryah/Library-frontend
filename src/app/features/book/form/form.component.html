@@ -10,12 +10,22 @@
   <button type="button" id="cancel" (click)="goBack()">Cancel</button>
 </form> -->
 
+<div class="container">
+  <div class="box">
+    <h2>Cadastrar Livro</h2>
 <div *ngFor="let value of keys">
 <mat-form-field appearance="fill" [formGroup]="formBook">
   <mat-label>{{ valueUpper(value) }}</mat-label>
   <input matInput [formControlName]="value" [id]="value">
+  <div *ngIf="value === 'description'">
+    <textarea matInput></textarea>
+  </div>
 </mat-form-field>
 </div>
 
-<button mat-flat-button color="primary" (click)="clickOnSubmit()">Submit</button>
-<button mat-stroked-button color="primary" id="cancel" (click)="goBack()">Cancel</button>
+<div class="buttons">
+  <button mat-stroked-button color="primary" id="cancel" (click)="goBack()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="clickOnSubmit()">Submit</button>
+</div>
+</div>
+</div>

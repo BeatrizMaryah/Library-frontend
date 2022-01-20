@@ -5,6 +5,7 @@ import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [FormComponent, ListComponent],
@@ -12,7 +13,8 @@ import { MaterialModule } from 'src/app/material.module';
     CommonModule,
     BookRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule,
   ]
 })
 export class BookModule { }

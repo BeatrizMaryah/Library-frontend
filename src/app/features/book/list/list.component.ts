@@ -30,13 +30,17 @@ export class ListComponent implements OnInit {
   }
 
   editBook(id: number) {
-    this.router.navigate(['edit', id], { relativeTo: this.activatedRoute });
+    this.router.navigate([id], { relativeTo: this.activatedRoute });
   }
 
   deleteBook(id: number){
     this.booksService.delete(id).subscribe(() => {
       this.books = this.books.filter(animal => animal.id !== id);
     })
+  }
+
+  seeBook(){
+
   }
 
   private setBooks(books) {

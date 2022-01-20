@@ -5,7 +5,7 @@ import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'add',
     component: FormComponent,
   },
 ];

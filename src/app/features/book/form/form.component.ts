@@ -51,7 +51,7 @@ export class FormComponent implements OnInit {
 
     const hasId = Boolean(this.activatedRoute.snapshot.params.id);
 
-    this.formTypeLabel = hasId ? 'Atualizar' : 'Cadastrar';
+    this.formTypeLabel = hasId ? 'Update' : 'Register';
   }
 
   clickOnSubmit(){

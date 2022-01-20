@@ -5,6 +5,11 @@ import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'add',
+    pathMatch: 'full',
+  },
+  {
     path: 'add',
     component: FormComponent,
   },

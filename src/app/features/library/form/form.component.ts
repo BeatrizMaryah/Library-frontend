@@ -11,6 +11,8 @@ import { LibrariesService } from 'src/app/core/services/libraries/libraries.serv
 })
 export class FormComponent implements OnInit {
 
+  formTypeLabel: string;
+
   @Input()
   libraryId: number;
 
@@ -31,13 +33,17 @@ export class FormComponent implements OnInit {
     this.formLibrary = this.formBuilder.group({
       id: '',
       name: ['', [Validators.required, Validators.minLength(5)]],
-      username: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      address: '',
+      contact: '',
     });
 
     this.keys = Object.keys(this.formLibrary.value).filter(
       (key) => key !== 'id'
     );
+
+    const hasId = Boolean(this.activatedRoute.snapshot.params.id);
+
+    this.formTypeLabel = hasId ? 'Atualizar' : 'Cadastrar';
   }
 
   clickOnSubmit(){
@@ -47,8 +53,7 @@ export class FormComponent implements OnInit {
         this.librariesService.setLibrary(value);
         this.formLibrary.reset();
 
-        this.router.navigate(['books']);
-          // this.router.navigate(['..'], { relativeTo: this.activatedRoute });
+        this.router.navigate(['..'], { relativeTo: this.activatedRoute });
       });
     }
   }
@@ -60,4 +65,8 @@ export class FormComponent implements OnInit {
   valueUpper = (value) => {
     return value.charAt(0).toUpperCase() + value.slice(1, value.length);
   };
+
+
+  @Input()
+  libraries = [];
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/core/model/book';
 import { BooksService } from 'src/app/core/services/books/books.service';
+import { LibrariesService } from 'src/app/core/services/libraries/libraries.service';
 
 @Component({
   selector: 'app-list',
@@ -39,8 +40,12 @@ export class ListComponent implements OnInit {
     })
   }
 
-  goToAdd(){
+  goToAddBook(){
     this.router.navigate(['add'], { relativeTo: this.activatedRoute });
+  }
+
+  goToAddLibrary(){
+    this.router.navigate(['libraries/add']);
   }
 
   private setBooks(books) {

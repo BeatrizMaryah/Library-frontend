@@ -11,13 +11,11 @@ import { LibrariesService } from 'src/app/core/services/libraries/libraries.serv
 })
 export class FormComponent implements OnInit {
 
+  errorMessage: string;
   formTypeLabel: string;
 
   @Input()
   libraryId: number;
-
-  @Output()
-  submit = new EventEmitter();
 
   formLibrary: FormGroup;
   keys: string[];
@@ -32,9 +30,9 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.formLibrary = this.formBuilder.group({
       id: '',
-      name: ['', [Validators.required, Validators.minLength(5)]],
-      address: '',
-      contact: '',
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      address: ['', [Validators.required, Validators.minLength(10)]],
+      contact: ['', [Validators.required, Validators.maxLength(9)]],
     });
 
     this.keys = Object.keys(this.formLibrary.value).filter(
@@ -48,25 +46,24 @@ export class FormComponent implements OnInit {
 
   clickOnSubmit(){
     if (this.formLibrary.valid) {
+      this.errorMessage = "";
       const library: Library = this.formLibrary.value;
       this.librariesService.upsert(library).subscribe((value) => {
         this.librariesService.setLibrary(value);
         this.formLibrary.reset();
 
-        this.router.navigate(['..'], { relativeTo: this.activatedRoute });
+        this.router.navigate(['books']);
       });
+    } else {
+      this.errorMessage = "Enter valid information"
     }
   }
 
   goBack(): void {
-    this.router.navigate(['..'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['books']);
   }
 
   valueUpper = (value) => {
     return value.charAt(0).toUpperCase() + value.slice(1, value.length);
   };
-
-
-  @Input()
-  libraries = [];
 }

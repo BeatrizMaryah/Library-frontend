@@ -6,6 +6,7 @@
 <mat-form-field appearance="fill" [formGroup]="formLibrary">
   <mat-label>{{ valueUpper(value) }}</mat-label>
   <input matInput [formControlName]="value" [id]="value">
+  <mat-error *ngIf="formLibrary.hasError('required')"></mat-error>
   <div *ngIf="value === 'description'">
     <textarea matInput></textarea>
   </div>
@@ -16,6 +17,12 @@
 <div class="buttons">
   <button mat-stroked-button color="primary" id="cancel" (click)="goBack()">Cancel</button>
   <button mat-flat-button color="primary" (click)="clickOnSubmit()">Submit</button>
+</div>
+<div *ngIf="!(formLibrary.valid)" align="center">
+  <br>
+  <mat-divider></mat-divider> 
+  <br>
+  <span>{{ errorMessage }}</span>
 </div>
 </div>
 </div>

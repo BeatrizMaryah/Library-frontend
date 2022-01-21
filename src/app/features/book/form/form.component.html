@@ -6,8 +6,14 @@
 <mat-form-field appearance="fill" [formGroup]="formBook">
   <mat-label>{{ valueUpper(value) }}</mat-label>
   <input matInput [formControlName]="value" [id]="value">
+  <mat-error *ngIf="formBook.hasError('required')"></mat-error>
   <div *ngIf="value === 'description'">
     <textarea matInput></textarea>
+  </div>
+  <div *ngIf="value === 'idLibrary'">
+    <mat-select matInput *ngFor="let library of libraries">
+      <mat-option [formControlName]="value">{{ library.name }}</mat-option>
+    </mat-select>
   </div>
 
 </mat-form-field>
@@ -16,6 +22,12 @@
 <div class="buttons">
   <button mat-stroked-button color="primary" id="cancel" (click)="goBack()">Cancel</button>
   <button mat-flat-button color="primary" (click)="clickOnSubmit()">Submit</button>
+</div>
+<div *ngIf="!(formBook.valid)" align="center">
+  <br>
+  <mat-divider></mat-divider> 
+  <br>
+  <span>{{ errorMessage }}</span>
 </div>
 </div>
 </div>

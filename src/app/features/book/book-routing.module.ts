@@ -5,6 +5,8 @@ import { Book } from 'src/app/core/model/book';
 import { BooksService } from 'src/app/core/services/books/books.service';
 import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
+import { LibrariesService } from 'src/app/core/services/libraries/libraries.service';
+import { Library } from 'src/app/core/model/library'
 
 @Injectable()
 export class BooksDataResolver implements Resolve<Book[]>{
@@ -13,6 +15,16 @@ export class BooksDataResolver implements Resolve<Book[]>{
 
   resolve() {
     return this.booksService.all();
+  }
+}
+
+@Injectable()
+export class LibrariesDataResolver implements Resolve<Library[]>{
+
+  constructor(private librariesService: LibrariesService){}
+
+  resolve() {
+    return this.librariesService.all();
   }
 }
 
@@ -36,6 +48,9 @@ const routes: Routes = [
   {
     path: 'add',
     component: FormComponent,
+    resolve: {
+      books: LibrariesDataResolver,
+    },
   },
   {
     path: ':id',
@@ -49,6 +64,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [BooksDataResolver, BookDataResolver]
+  providers: [BooksDataResolver, BookDataResolver, LibrariesDataResolver]
 })
 export class BookRoutingModule { }

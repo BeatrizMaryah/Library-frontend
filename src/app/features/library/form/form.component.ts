@@ -11,11 +11,11 @@ import { LibrariesService } from 'src/app/core/services/libraries/libraries.serv
 })
 export class FormComponent implements OnInit {
 
+  errorMessage: string;
+  formTypeLabel: string;
+
   @Input()
   libraryId: number;
-
-  @Output()
-  submit = new EventEmitter();
 
   formLibrary: FormGroup;
   keys: string[];
@@ -30,31 +30,37 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.formLibrary = this.formBuilder.group({
       id: '',
-      name: ['', [Validators.required, Validators.minLength(5)]],
-      username: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      address: ['', [Validators.required, Validators.minLength(10)]],
+      contact: ['', [Validators.required, Validators.maxLength(9)]],
     });
 
     this.keys = Object.keys(this.formLibrary.value).filter(
       (key) => key !== 'id'
     );
+
+    const hasId = Boolean(this.activatedRoute.snapshot.params.id);
+
+    this.formTypeLabel = hasId ? 'Atualizar' : 'Cadastrar';
   }
 
   clickOnSubmit(){
     if (this.formLibrary.valid) {
+      this.errorMessage = "";
       const library: Library = this.formLibrary.value;
       this.librariesService.upsert(library).subscribe((value) => {
         this.librariesService.setLibrary(value);
         this.formLibrary.reset();
 
         this.router.navigate(['books']);
-          // this.router.navigate(['..'], { relativeTo: this.activatedRoute });
       });
+    } else {
+      this.errorMessage = "Enter valid information"
     }
   }
 
   goBack(): void {
-    this.router.navigate(['..'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['books']);
   }
 
   valueUpper = (value) => {

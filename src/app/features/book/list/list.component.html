@@ -1,22 +1,36 @@
-<shared-toolbar></shared-toolbar>
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="goToAddBook()">
+      <mat-icon>book</mat-icon>
+      <span>Add new Book</span>
+    </button>
+    <button mat-menu-item (click)="goToAddLibrary()">
+      <mat-icon>domain</mat-icon>
+      <span>Add new Library</span>
+    </button>
+  </mat-menu>
+  <span>Bem vindo(a)!</span>
+  <span class="spacer"></span>
+    <button mat-icon-button>
+    <mat-icon>collections_bookmark</mat-icon>
+  </button>
+</mat-toolbar>
 
-<div *ngFor="let book of books">
+<div *ngFor="let book of books" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center stretch" class="row-example">
   <mat-card class="card">
   <mat-card-title-group>
     <mat-card-title>{{ book.name }}</mat-card-title>
     <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
-    <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
   </mat-card-title-group>
   <mat-card-content>{{ book.description }}</mat-card-content>
   <mat-card-actions  align="end">
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="seeBook()">
-        <mat-icon>visibility</mat-icon>
-        <span>See</span>
-      </button>
       <button mat-menu-item (click)="editBook(book.id)">
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
@@ -29,5 +43,3 @@
   </mat-card-actions>
 </mat-card>
 </div>
-
-

@@ -24,6 +24,7 @@ export class LibrariesService {
   }
 
   upsert(library: Library){
+    library.contact = Number(library.contact);
 
     if(library.id){
       return this.http.patch<Library>(`${this.baseUrl}/${library.id}`, library);

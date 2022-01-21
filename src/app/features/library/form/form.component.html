@@ -1,11 +1,28 @@
-<form [formGroup]="formLibrary">
-  <div *ngFor="let value of keys">
-    <label [for]="value">{{  valueUpper(value) }}:</label>
-    <br />
-    <input type="text" [formControlName]="value" [id]="value" />
-    <br />
+
+<div class="container">
+  <div class="box">
+    <h2>{{ formTypeLabel }} Library</h2>
+<div *ngFor="let value of keys">
+<mat-form-field appearance="fill" [formGroup]="formLibrary">
+  <mat-label>{{ valueUpper(value) }}</mat-label>
+  <input matInput [formControlName]="value" [id]="value">
+  <mat-error *ngIf="formLibrary.hasError('required')"></mat-error>
+  <div *ngIf="value === 'description'">
+    <textarea matInput></textarea>
   </div>
 
-  <button type="button" (click)="clickOnSubmit()">Submit</button>
-  <button type="button" id="cancel" (click)="goBack()">Cancel</button>
-</form>
+</mat-form-field>
+</div>
+
+<div class="buttons">
+  <button mat-stroked-button color="primary" id="cancel" (click)="goBack()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="clickOnSubmit()">Submit</button>
+</div>
+<div *ngIf="!(formLibrary.valid)" align="center">
+  <br>
+  <mat-divider></mat-divider> 
+  <br>
+  <span>{{ errorMessage }}</span>
+</div>
+</div>
+</div>

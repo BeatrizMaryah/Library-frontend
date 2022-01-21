@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from '../core/page-not-found/page-not-found.com
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'libraries',
+    redirectTo: 'books',
     pathMatch: 'full',
   },
   {
